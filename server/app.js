@@ -21,7 +21,6 @@ mongoose.connect(dbURI, (err) => {
   }
 });
 
-
 const app = express();
 
 app.use(helmet());
@@ -30,7 +29,6 @@ app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use(session({
   key: 'sessionid',
   secret: 'Domo Arigato',
@@ -39,8 +37,10 @@ app.use(session({
 }));
 
 app.engine('handlebars', expressHandlebars.engine({ defaultLayout: '' }));
+
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/../views`);
+
 app.use(cookieParser());
 
 router(app);
